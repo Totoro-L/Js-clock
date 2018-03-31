@@ -26,20 +26,22 @@ window.onload=function(){
 		 cNumber[5].value=toDouble(cData.getSeconds());
 	     }
 	function tick2(){
-		 cNumber[5].value=toDouble(parseInt(cNumber[5].value)+1);
-		 if(parseInt(cNumber[5].value)>=60)
-		 {
-			 cNumber[5].value=toDouble(0);
-			 cNumber[4].value=toDouble(parseInt(cNumber[4].value)+1);
-			 if(parseInt(cNumber[4].value)>=60){
-				 cNumber[4].value=toDouble(0);
-				 cNumber[3].value=toDouble(parseInt(cNumber[3].value)+1);
-				  if(parseInt(cNumber[3].value)>=24){
-				 cNumber[3].value=toDouble(0);
-				 cNumber[2].value=toDouble(parseInt(cNumber[3].value)+1);
-			      }
-			 }
-		 }
+		 var year=cNumber[0].value;
+		 var month=toDouble(parseInt(cNumber[1].value));
+		 var day=toDouble(cNumber[2].value);
+		 var hour=toDouble(cNumber[3].value);
+		 var minute=toDouble(cNumber[4].value);
+		 var second=toDouble(cNumber[5].value);
+		 var str=year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
+		 var d=Date.parse(str);
+		 d+=1000;
+		 var Time=new Date(d);
+		 cNumber[0].value=toDouble(Time.getFullYear());
+		 cNumber[1].value=toDouble(Time.getMonth()+1);
+		 cNumber[2].value=toDouble(Time.getDate());
+		 cNumber[3].value=toDouble(Time.getHours());
+		 cNumber[4].value=toDouble(Time.getMinutes());
+		 cNumber[5].value=toDouble(Time.getSeconds());
 	}
 	 timer=setInterval(tick1, 1000);
 	 tick1();
